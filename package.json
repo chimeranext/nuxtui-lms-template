@@ -4,7 +4,9 @@
   "private": false,
   "description": "White-label Nuxt UI LMS template (Envato-ready, standalone, demo data, offline docs).",
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -16,23 +18,34 @@
     "db:studio": "drizzle-kit studio",
     "openapi": "nuxt build && cp .output/server/openapi.json openapi/academy.openapi.yaml",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "golar typecheck",
+    "typecheck:nuxt": "nuxt typecheck"
   },
   "dependencies": {
     "@auth/core": "^0.34.0",
     "@auth/neon-adapter": "^1.8.0",
     "@neondatabase/serverless": "^0.10.0",
     "@nuxt/image": "^1.9.0",
-    "@nuxtjs/seo": "^2.2.0",
+    "@nuxt/ui": "^4.0.0",
+    "@nuxtjs/seo": "^5.3.16",
     "@pinia/nuxt": "^0.6.0",
     "drizzle-orm": "^0.36.0",
-    "fluid-player": "github:chimeranext/fluid-player-pinned",
+    "fluid-player": "^3.60.0",
     "nuxt": "^4.0.0",
-    "@nuxt/ui": "^4.0.0",
-    "pinia": "^2.2.0"
+    "pinia": "^2.2.0",
+    "vgpu": "^0.5.0"
   },
   "devDependencies": {
+    "@golar/vue": "^0.1.10",
+    "@rive-app/canvas": "^2.44.0",
+    "@types/node": "^26.6.3",
+    "animejs": "^4.5.0",
     "drizzle-kit": "^0.30.0",
-    "typescript": "^7.0.0-dev"
+    "golar": "^0.1.10",
+    "gsap": "^3.15.0",
+    "motion": "^13.4.6",
+    "nuxt-og-image": "^6.10.1",
+    "three": "^0.186.1",
+    "typescript": "^7.0.2"
   }
 }

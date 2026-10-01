@@ -1,6 +1,6 @@
 <template>
   <UContainer>
-    <UAlert color="red" variant="soft">
+    <UAlert color="error" variant="soft">
       <template #title>{{ error?.statusCode }} — {{ error?.message }}</template>
     </UAlert>
     <UButton to="/">Home</UButton>

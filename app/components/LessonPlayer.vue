@@ -7,6 +7,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{ src: string }>()
-const playerEl = ref<HTMLElement | null>(null)
-// TODO: init fluid-player pinned fork onMounted(playerEl, { layoutControls: { src: props.src } })
+import type { Ref } from 'vue'
+const playerEl: Ref<HTMLElement | null> = ref<HTMLElement | null>(null)
+// TODO: init fluid-player (npm, MIT) onMounted(playerEl, { layoutControls: { src: props.src } })
 </script>

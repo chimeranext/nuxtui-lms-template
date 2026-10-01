@@ -1,3 +1,4 @@
+/// <reference types="node" />
 // Template defaults: brand-neutral, demo data, local mocks.
 // Academy overrides via academy.config.ts (tokens Chimera, real content, prod keys).
 export interface TemplateConfig {

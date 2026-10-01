@@ -8,6 +8,7 @@
 
 <script setup lang="ts">
 defineProps<{ question: string; options: { label: string; value: string }[] }>()
-const answer = ref<string>('')
+import type { Ref } from 'vue'
+const answer: Ref<string> = ref<string>('')
 defineEmits<{ submit: [value: string] }>()
 </script>

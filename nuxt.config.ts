@@ -1,6 +1,8 @@
 // White-label base config. Academy NEVER edits this file —
 // it overrides via academy.config.ts in the academy repo.
-export default defineNuxtConfig({
+import type { NuxtConfig } from 'nuxt/schema'
+
+const config: NuxtConfig = defineNuxtConfig({
   compatibilityDate: '2026-09-30',
   future: { compatibilityVersion: 4 },
   modules: ['@nuxt/ui', '@nuxt/image', '@nuxtjs/seo', '@pinia/nuxt'],
@@ -11,13 +13,13 @@ export default defineNuxtConfig({
     '/': { prerender: true },
     '/courses/**': { isr: 3600 },
     '/dashboard/**': { ssr: false },
-    '/api/_openapi.json': { prerender: true },
     '/.well-known/openbadges/issuer.json': { prerender: true },
   },
   nitro: {
     // Academy preset: node-server. Envato demo preset: static.
     // preset: process.env.NUXT_PRESET === 'static' ? 'static' : 'node-server',
-    openAPI: { production: 'runtime' },
+    // TODO: Nitro OpenAPI (/api/_openapi.json) — enable + prerender once the
+    // openapi route is wired; see openapi/academy.openapi.yaml.
   },
   runtimeConfig: {
     databaseUrl: process.env.DATABASE_URL,
@@ -28,3 +30,5 @@ export default defineNuxtConfig({
     },
   },
 })
+
+export default config
