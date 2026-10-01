@@ -56,14 +56,13 @@ function routeTrace(
     const blocked = pts.some((p) => hitsChip(p.x, p.y, chips))
     if (!blocked || attempt === 7) {
       // 45° chamfer each corner for the PCB aesthetic.
-      const c = 8
       let d = `M ${from.x} ${from.y}`
       const segs: { x: number; y: number }[] = [from, { x: mx, y: from.y }, { x: mx, y: to.y }, to]
       for (let i = 1; i < segs.length; i++) {
-        const p = segs[i]!
+        const p: { x: number; y: number } | undefined = segs[i]
+        if (p === undefined) continue
         d += ` L ${p.x} ${p.y}`
       }
-      void c
       const vias = attempt > 3 ? [{ x: mx, y: (from.y + to.y) / 2 }] : []
       return { d, vias }
     }
@@ -111,7 +110,7 @@ export function generatePcb(opts: PcbOptions): Pcb {
         routed: d,
         ratsnest: `M ${from.x} ${from.y} L ${to.x} ${to.y}`,
         vias,
-        color: TRACE_COLORS[ti % TRACE_COLORS.length]!,
+        color: TRACE_COLORS[ti % TRACE_COLORS.length] ?? '#B78E3B',
       })
     }
   }

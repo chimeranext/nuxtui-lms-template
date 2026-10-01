@@ -68,7 +68,8 @@ function growRoom(rand: () => number, blocks: number): Cell[] {
         }
       }
       const opts = [...frontier.values()]
-      const pick = opts[Math.floor(rand() * opts.length)]!
+      const pick: Cell | undefined = opts[Math.floor(rand() * opts.length)]
+      if (pick === undefined) continue
       cells.set(key(pick), pick)
     }
     if (!hasHoles(cells)) return [...cells.values()]
@@ -87,7 +88,8 @@ function hasHoles(cells: Map<string, Cell>): boolean {
   const seen = new Set<string>()
   const queue: Cell[] = [{ x: x0, y: y0 }]
   while (queue.length > 0) {
-    const c = queue.pop()!
+    const c: Cell | undefined = queue.pop()
+    if (c === undefined) continue
     const k = key(c)
     if (seen.has(k) || cells.has(k)) continue
     if (c.x < x0 || c.x > x1 || c.y < y0 || c.y > y1) continue
@@ -96,10 +98,6 @@ function hasHoles(cells: Map<string, Cell>): boolean {
   }
   const total = (x1 - x0 + 1) * (y1 - y0 + 1) - cells.size
   return seen.size !== total
-}
-
-function manhattan(a: Cell, b: Cell): number {
-  return Math.abs(a.x - b.x) + Math.abs(a.y - b.y)
 }
 
 function straightPath(from: Cell, to: Cell): Cell[] {
@@ -154,17 +152,22 @@ export function generateDungeon(opts: DungeonOptions): Dungeon {
     rooms.push({
       id: i,
       cells,
-      color: PALETTE[i % PALETTE.length]!,
-      doors: [...doorIdx].map((d) => cells[d]!),
+      color: PALETTE[i % PALETTE.length] ?? '#B78E3B',
+      doors: [...doorIdx]
+        .map((d) => cells[d])
+        .filter((c): c is Cell => c !== undefined),
     })
   }
 
   // Connect each room to the previous via shortest door-to-door corridor (tree).
   const corridors: Corridor[] = []
   for (let i = 1; i < rooms.length; i++) {
+    const prev: Room | undefined = rooms[i - 1]
+    const curr: Room | undefined = rooms[i]
+    if (prev === undefined || curr === undefined) continue
     let best: Corridor | null = null
-    for (const a of rooms[i - 1]!.doors) {
-      for (const b of rooms[i]!.doors) {
+    for (const a of prev.doors) {
+      for (const b of curr.doors) {
         const path = straightPath(a, b)
         if (best === null || path.length < best.path.length) {
           best = { from: a, to: b, path }
@@ -176,7 +179,6 @@ export function generateDungeon(opts: DungeonOptions): Dungeon {
 
   const allX = [...occupied].map((k) => Number(k.split(',')[0]))
   const allY = [...occupied].map((k) => Number(k.split(',')[1]))
-  void manhattan
   return {
     rooms,
     corridors,

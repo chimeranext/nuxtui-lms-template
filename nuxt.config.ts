@@ -5,7 +5,7 @@ import type { NuxtConfig } from 'nuxt/schema'
 const config: NuxtConfig = defineNuxtConfig({
   compatibilityDate: '2026-09-30',
   future: { compatibilityVersion: 4 },
-  modules: ['@nuxt/ui', '@nuxt/image', '@nuxtjs/seo', '@pinia/nuxt'],
+  modules: ['@nuxt/ui', '@nuxt/image', '@nuxtjs/seo', '@pinia/nuxt', '@nuxt/eslint'],
   typescript: { strict: true },
   // NOTE: isolatedDeclarations is enforced via tsconfig (TS 7 strict).
   // Nuxt routeRules: hybrid SSR/SSG/SPA.
