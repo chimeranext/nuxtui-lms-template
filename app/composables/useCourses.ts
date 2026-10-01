@@ -1,12 +1,6 @@
 import { useQuery } from '@pinia/colada'
 import type { Ref } from 'vue'
-
-export interface CanvasCourse {
-  id: string
-  name: string
-  course_code: string
-  workflow_state: string
-}
+import type { CanvasCourse } from '../stores/course'
 
 export interface CoursesQuery {
   courses: Ref<CanvasCourse[] | undefined>
