@@ -1,0 +1,39 @@
+# GENERATED — do not edit by hand. Source: Nitro runtime (/api/_openapi.json).
+# Regenerate: pnpm openapi (nuxt build && cp .output/server/openapi.json here).
+openapi: 3.1.0
+info:
+  title: Academy API (template stub)
+  version: 0.1.0
+paths:
+  /api/v1/courses:
+    get:
+      summary: Canvas-compatible course list
+      responses: { '200': { description: OK } }
+  /api/v1/courses/{id}/assignments:
+    get:
+      summary: Canvas-compatible assignments
+      responses: { '200': { description: OK } }
+  /api/credentials/issue:
+    post:
+      summary: Issue OB3.0 AchievementCredential
+      responses: { '200': { description: OK } }
+  /api/credentials/{id}:
+    get:
+      summary: Fetch credential + credentialStatus
+      responses: { '200': { description: OK } }
+  /verify:
+    get:
+      summary: Public verification page
+      responses: { '200': { description: OK } }
+  /login/oauth2/auth:
+    get:
+      summary: Canvas OAuth2 authorize shim
+      responses: { '200': { description: OK } }
+  /login/oauth2/token:
+    post:
+      summary: Canvas OAuth2 token shim (authorization_code + refresh_token 1h)
+      responses: { '200': { description: OK } }
+  /ims/ob/v3p0/discovery:
+    get:
+      summary: OB3.0 discovery gateway
+      responses: { '200': { description: OK } }

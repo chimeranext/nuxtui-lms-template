@@ -1,0 +1,13 @@
+# OpsX remotes — one-way sync template -> academy. Never reverse.
+schema: spec-driven
+remotes:
+  - name: template
+    path: .
+    role: source
+  - name: academy
+    path: ../academy
+    role: override
+    specsDir: specs/overrides
+sync:
+  direction: template-to-academy
+  strategy: deltas-only

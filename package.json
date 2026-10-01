@@ -1,0 +1,38 @@
+{
+  "name": "@chimeranext/nuxtui-lms-template",
+  "version": "0.1.0",
+  "private": false,
+  "description": "White-label Nuxt UI LMS template (Envato-ready, standalone, demo data, offline docs).",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "build:static": "NUXT_PRESET=static nuxt build && nuxt generate",
+    "preview": "nuxt preview",
+    "generate": "nuxt generate",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "openapi": "nuxt build && cp .output/server/openapi.json openapi/academy.openapi.yaml",
+    "lint": "eslint .",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@auth/core": "^0.34.0",
+    "@auth/neon-adapter": "^1.8.0",
+    "@neondatabase/serverless": "^0.10.0",
+    "@nuxt/image": "^1.9.0",
+    "@nuxtjs/seo": "^2.2.0",
+    "@pinia/nuxt": "^0.6.0",
+    "drizzle-orm": "^0.36.0",
+    "fluid-player": "github:chimeranext/fluid-player-pinned",
+    "nuxt": "^4.0.0",
+    "@nuxt/ui": "^4.0.0",
+    "pinia": "^2.2.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.30.0",
+    "typescript": "^7.0.0-dev"
+  }
+}
