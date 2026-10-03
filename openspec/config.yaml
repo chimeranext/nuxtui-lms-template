@@ -1,0 +1,47 @@
+schema: spec-driven
+
+context: |
+  Language: en
+  Stack: Nuxt 4 + Nuxt UI 4 + Nitro 3 + h3 + TypeScript strict (isolatedDeclarations).
+  Visual base: nuxt-ui-templates/chat (AI-tutor + dashboard).
+  DB: Neon (pooled DATABASE_URL, 2 projects: demo-template / academy-prod). ORM: Drizzle + drizzle-kit (server/db/schema.ts: users, accounts, courses, enrollments, credentials_issued). Auth: Auth.js v5 + @auth/neon-adapter.
+  Video: fluid-player Vue wrapper (pinned fork). CDN: Bunny Stream + Storage (NUXT_PUBLIC_VIDEO_CDN, local mock in template).
+  LMS components: CourseCard, LessonPlayer, Quiz, ProgressRing, BadgeCard, CertificateView (from ui.nuxt.com raw docs).
+  Nuxt features: file-routing + nested routes, hybrid SSR/SSG/SPA via routeRules, async/isomorphic data, type-safe Nitro APIs (/api/_openapi.json), h3 middleware, error.vue, SEO (@nuxtjs/seo + schema Course), Pinia, nuxt/image, presets node-server (academy) / static (demo Envato).
+  Credentials: OpenBadges 3.0 Issuer conformant — did:web:academy.chimeranext.dev, Issuer Profile /.well-known/openbadges/issuer.json, AchievementCredential VC 2.0 + JSON-LD, Ed25519 signature, credentialStatus. Nitro: POST /api/credentials/issue, GET /api/credentials/[id], GET /verify.
+  Canvas compat shim in Nitro: /api/v1/courses, /api/v1/courses/:id/assignments, /login/oauth2/{auth,token}, /ims/ob/v3p0/{credentials,profile,discovery} -> gateway to internal OB3. Spec source: openapi/academy.openapi.yaml generated from Nitro (never hand-written).
+  Wrapper rule: academy/ is a thin override layer over the template via academy.config.ts. Never fork template code — overrides only in academy/specs/overrides/ (deltas). Sync is one-way template -> academy (see opsx.yaml remotes).
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+
+rules:
+  proposal:
+    - Dual-target every change: template (Envato white-label, demo data, offline docs) vs academy override (tokens Chimera, real content, prod keys).
+    - Include rollback plan (template tag + academy override revert).
+  specs:
+    - Use Given/When/Then for scenarios; name the affected LMS component(s).
+  design:
+    - State routeRules impact (ssr/ssg/spa) and Nitro preset impact (node-server vs static).
+  tasks:
+    - Break tasks into chunks of max 2 hours; flag Canvas-shim and OB3-conformance tasks explicitly.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing

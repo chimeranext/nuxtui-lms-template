@@ -1,0 +1,13 @@
+{
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "strict": true,
+    "isolatedDeclarations": true,
+    "declaration": true,
+    "allowJs": false,
+    "types": ["node"],
+    "verbatimModuleSyntax": true,
+    "noUncheckedIndexedAccess": true
+  },
+  "exclude": ["node_modules", ".nuxt/ui", ".nuxt/image", "dist", ".output"]
+}
